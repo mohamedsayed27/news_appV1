@@ -5,46 +5,47 @@ import 'package:news_app/layout/news_app/cubit/cubit.dart';
 import 'package:news_app/layout/news_app/cubit/states.dart';
 class SearchScreen extends StatelessWidget {
   final searchController = TextEditingController();
-  final seaontroller = TextEditingController();
 
   SearchScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var searchList =  NewsCubit.get(context).searchList;
     return BlocConsumer<NewsCubit,NewsStates>(
       listener: (BuildContext context, state) {  },
-      builder: (BuildContext context, Object? state) =>Scaffold(
-        appBar: AppBar(),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: TextFormField(
-                controller: searchController,
-                keyboardType: TextInputType.text,
-                onChanged: (value){
-                  NewsCubit.get(context).searchData(value);
-                },
-                validator: (value){
-                  if(value!.isEmpty){
-                    return 'You Must Enter anything';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    labelText: 'Search',
-                    prefixIcon: const Icon(
-                        Icons.search
-                    ),
-                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))
-                ),
+      builder: (BuildContext context, Object? state) {
+        var searchList =  NewsCubit.get(context).searchList;
+        return Scaffold(
+          appBar: AppBar(),
+          body: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: TextFormField(
+                  controller: searchController,
+                  keyboardType: TextInputType.text,
+                  onChanged: (value){
+                    NewsCubit.get(context).searchData(value);
+                  },
+                  validator: (value){
+                    if(value!.isEmpty){
+                      return 'You Must Enter anything';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      labelText: 'Search',
+                      prefixIcon: const Icon(
+                          Icons.search
+                      ),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(20))
+                  ),
 
+                ),
               ),
-            ),
-            Expanded(child: articleBuilder(searchList,isSearch: true))
-          ],
-        ),
-      ),
+              Expanded(child: articleBuilder(searchList,isSearch: true))
+            ],
+          ),
+        );
+      },
     );
   }
 }

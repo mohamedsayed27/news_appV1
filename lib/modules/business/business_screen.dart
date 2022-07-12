@@ -8,11 +8,12 @@ class BusinessScreen extends StatelessWidget {
   const BusinessScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var businessList =  NewsCubit.get(context).businessList;
     return BlocConsumer<NewsCubit,NewsStates>(
-        builder: (BuildContext context, NewsStates state)=>  articleBuilder(businessList),
-        listener:(BuildContext context, NewsStates state){
-
+        builder: ( context,  state)  {
+          var businessList =  NewsCubit.get(context).businessList;
+          return articleBuilder(businessList);
+        },
+        listener:( context,  state){
         } ,
      );
   }

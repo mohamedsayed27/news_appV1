@@ -7,10 +7,10 @@ class ScienceScreen extends StatelessWidget {
   const ScienceScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var scienceList = NewsCubit.get(context).scienceList;
-
     return BlocConsumer<NewsCubit,NewsStates>(
-      builder: (BuildContext context, NewsStates state)=>  articleBuilder(scienceList),
+      builder: (BuildContext context, NewsStates state){
+        var scienceList =  NewsCubit.get(context).scienceList;
+      return articleBuilder(scienceList);},
       listener:(BuildContext context, NewsStates state){
 
       } ,

@@ -13,11 +13,12 @@ class CashHelper{
     return await sharedPreferences.setBool(key, value);
   }
 
-  static bool? getBoolean(
+  static bool? getData(
       {
         required String key,
 
       }) {
     return sharedPreferences.getBool(key);
   }
+
 }

@@ -49,6 +49,8 @@ Widget articleItemBuilder(article ,context) =>
   ),
 ),
     );
+
+
 Widget articleBuilder (List list,{isSearch = false}){
   return ConditionalBuilder(
     condition: list.isNotEmpty,

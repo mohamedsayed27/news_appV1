@@ -30,12 +30,14 @@ class NewsCubit extends Cubit<NewsStates> {
          label: "Sports"
 
      ),
-
   ];
+
+
   void changeBottomNavBar (int index){
     currentIndex = index;
     emit(NewsBottomNavStates());
   }
+
   List<dynamic> businessList = [];
   void  getBusinessData(){
     emit(LoadingBusinessData());
@@ -45,7 +47,6 @@ class NewsCubit extends Cubit<NewsStates> {
           'country':'eg',
           'category':'business',
           'apiKey':'11e31ea3e56142d98835f82b0f39bd7c',
-
         }).then((value) {
       businessList = value.data['articles'];
       emit(NewsGetBusinessDataSuccessState());
@@ -54,6 +55,8 @@ class NewsCubit extends Cubit<NewsStates> {
       emit(NewsGetBusinessDataErrorState(error.toString()));
     });
   }
+
+
   List<dynamic> scienceList = [];
   void getScienceData(){
     emit(LoadingScienceData());
@@ -75,6 +78,8 @@ class NewsCubit extends Cubit<NewsStates> {
 
 
   }
+
+
   List<dynamic> sportList = [];
   void getSportData(){
     emit(LoadingSportData());
@@ -88,6 +93,7 @@ class NewsCubit extends Cubit<NewsStates> {
           }).then((value) {
         sportList = value.data['articles'];
         emit(NewsGetSportDataSuccessState());
+        print(sportList.toList());
       }).catchError((error)
       {
         emit(NewsGetSportDataErrorState(error.toString()));
@@ -95,6 +101,8 @@ class NewsCubit extends Cubit<NewsStates> {
 
 
   }
+
+
   List<dynamic> searchList = [];
   void searchData(String value){
     emit(LoadingSearchData());
